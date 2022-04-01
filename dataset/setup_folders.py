@@ -25,4 +25,3 @@ for action in actions:
             os.makedirs(os.path.join(DATA_PATH, action, str(sequence)))
         except:
             pass
-
