@@ -3,9 +3,6 @@
 
 import cv2
 import numpy as np
-import pandas as pd
-import os
-from matplotlib import pyplot as plt
 import mediapipe as mp
 
 
@@ -59,7 +56,7 @@ def draw_styled_landmarks_both_hands(image, results):
             mp.solutions.drawing_utils.draw_landmarks(
                 image,
                 hand_landmarks,
-                mp_hands.HAND_CONNECTIONS,
+                mp.solutions.hands.HAND_CONNECTIONS,
                 mp.solutions.drawing_styles.get_default_hand_landmarks_style(),
                 mp.solutions.drawing_styles.get_default_hand_connections_style())
 
@@ -79,7 +76,7 @@ def draw_styled_landmarks_single_hand(image, results):
         mp.solutions.drawing_utils.draw_landmarks(
             image,
             results.multi_hand_landmarks[0],
-            mp_hands.HAND_CONNECTIONS,
+            mp.solutions.hands.HAND_CONNECTIONS,
             mp.solutions.drawing_styles.get_default_hand_landmarks_style(),
             mp.solutions.drawing_styles.get_default_hand_connections_style())
 
@@ -94,7 +91,8 @@ def extract_keypoints_both_hands(results):
 
 def extract_keypoints_single_hand(results):
     if results.multi_hand_landmarks:
-        hand = np.array([[res.x, res.y, res.z] for res in results.multi_hand_landmarks[0].landmark]).flatten() if results.multi_hand_landmarks else np.zeros((63,))
+        hand = np.array([[res.x, res.y, res.z] for res in results.multi_hand_landmarks[0].landmark]).flatten() if \
+            results.multi_hand_landmarks else np.zeros((63,))
     else:
         hand = np.zeros((63,))
     return hand
