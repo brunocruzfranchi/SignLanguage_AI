@@ -41,7 +41,7 @@ def preprocess_data():
 
 
 def train_test_dataset(X, y):
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05)
     return X_train, X_test, y_train, y_test
 
 
